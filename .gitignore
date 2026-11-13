@@ -1,0 +1,38 @@
+# Python and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Build output; publish the EXE through GitHub Releases
+/build/
+/dist/
+*.egg-info/
+
+# Personal databases and SQLite journals
+/data/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+
+# User exports; keep the public demonstration dataset
+/*.csv
+!/example_tasks.csv
+/studyos_report*.txt
+
+# Local configuration and temporary files
+.env
+.env.*
+*.log
+*.tmp
+~$*
+Thumbs.db
+.DS_Store

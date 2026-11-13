@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+     <width>960</width>
+     <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>StudyOS</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+        <number>0</number>
+      </property>
+       <widget class="QWidget" name="dashboardTab">
+        <attribute name="title">
+         <string>Главная</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="dashboardLayout">
+         <item>
+          <widget class="QLabel" name="dashboardTitleLabel">
+           <property name="text"><string>Обзор обучения</string></property>
+           <property name="styleSheet"><string>font-size: 24px; font-weight: bold; padding: 12px 0;</string></property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="summaryLayout">
+           <item><widget class="QGroupBox" name="activeGroup"><property name="title"><string>Активные задачи</string></property><layout class="QVBoxLayout" name="activeLayout"><item><widget class="QLabel" name="activeCountLabel"><property name="text"><string>0</string></property><property name="styleSheet"><string>font-size: 28px; font-weight: bold;</string></property></widget></item></layout></widget></item>
+           <item><widget class="QGroupBox" name="completedGroup"><property name="title"><string>Завершённые задачи</string></property><layout class="QVBoxLayout" name="completedLayout"><item><widget class="QLabel" name="completedCountLabel"><property name="text"><string>0</string></property><property name="styleSheet"><string>font-size: 28px; font-weight: bold;</string></property></widget></item></layout></widget></item>
+           <item><widget class="QGroupBox" name="overdueGroup"><property name="title"><string>Просроченные задачи</string></property><layout class="QVBoxLayout" name="overdueLayout"><item><widget class="QLabel" name="overdueCountLabel"><property name="text"><string>0</string></property><property name="styleSheet"><string>font-size: 28px; font-weight: bold; color: #b34d22;</string></property></widget></item></layout></widget></item>
+          </layout>
+         </item>
+         <item><widget class="QLabel" name="progressLabel"><property name="text"><string>Выполнено задач</string></property></widget></item>
+         <item><widget class="QProgressBar" name="completionProgressBar"><property name="value"><number>0</number></property><property name="format"><string>%p%</string></property></widget></item>
+         <item><widget class="QLabel" name="progressFormulaLabel"><property name="text"><string>Завершённые / (активные + завершённые). Удалённые задачи не учитываются.</string></property><property name="wordWrap"><bool>true</bool></property></widget></item>
+         <item><widget class="QLabel" name="workloadLabel"><property name="text"><string>Оставшаяся работа: 0 мин · Запланировано: 0 мин</string></property><property name="wordWrap"><bool>true</bool></property></widget></item>
+         <item><widget class="QLabel" name="planExplanationLabel"><property name="text"><string>Запланированное время — полная длительность незакончившихся блоков. Это не фактически выполненная работа.</string></property><property name="wordWrap"><bool>true</bool></property></widget></item>
+         <item><widget class="QLabel" name="deadlinesTitleLabel"><property name="text"><string>Ближайшие сроки · 5 активных задач, начиная с сегодня</string></property><property name="wordWrap"><bool>true</bool></property></widget></item>
+         <item>
+          <widget class="QTableWidget" name="deadlinesTableWidget">
+           <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+           <property name="selectionMode"><enum>QAbstractItemView::SingleSelection</enum></property>
+           <property name="selectionBehavior"><enum>QAbstractItemView::SelectRows</enum></property>
+           <property name="alternatingRowColors"><bool>true</bool></property>
+           <column><property name="text"><string>Задача</string></property></column>
+           <column><property name="text"><string>Предмет</string></property></column>
+           <column><property name="text"><string>Срок</string></property></column>
+           <column><property name="text"><string>Осталось</string></property></column>
+          </widget>
+         </item>
+         <item><widget class="QLabel" name="dashboardHintLabel"><property name="text"><string>Добавьте предмет и задачи, затем составьте расписание. Импорт и экспорт доступны в меню «Файл».</string></property><property name="wordWrap"><bool>true</bool></property></widget></item>
+        </layout>
+       </widget>
+      <widget class="QWidget" name="subjectsTab">
+       <attribute name="title">
+        <string>Предметы</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLineEdit" name="subjectSearchEdit">
+          <property name="placeholderText">
+           <string>Поиск предмета...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QListWidget" name="subjectsListWidget"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="addSubjectButton">
+            <property name="text">
+             <string>Добавить</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="editSubjectButton">
+            <property name="text">
+             <string>Изменить</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteSubjectButton">
+            <property name="text">
+             <string>	Удалить</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tasksTab">
+       <attribute name="title">
+        <string>Задачи</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="tasksTitleLable">
+            <property name="font">
+             <font>
+              <family>Dubai</family>
+              <pointsize>14</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="lineWidth">
+             <number>1</number>
+            </property>
+            <property name="text">
+             <string>Мои задачи</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addTaskButton">
+            <property name="text">
+             <string>+ Добавить</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tasksTableWidget">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Задача</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Предмет</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Приоритет</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Время</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Срок</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="completeTaskButton">
+            <property name="text">
+             <string>Выполнено</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="editTaskButton">
+            <property name="text">
+             <string>Изменить</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteTaskButton">
+            <property name="text">
+             <string>Удалить</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="plannerTab">
+       <attribute name="title">
+        <string>Расписание</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Планировщик занятий&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Начальная дата</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="plannerStartDateEdit"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Количество дней</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="plannerDaysSpin">
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>28</number>
+              </property>
+              <property name="value">
+               <number>7</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Начало занятий</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTimeEdit" name="plannerStartTimeEdit">
+              <property name="currentSection">
+               <enum>QDateTimeEdit::HourSection</enum>
+              </property>
+              <property name="displayFormat">
+               <string>HH:mm</string>
+              </property>
+              <property name="calendarPopup">
+               <bool>false</bool>
+              </property>
+              <property name="time">
+               <time>
+                <hour>17</hour>
+                <minute>0</minute>
+                <second>0</second>
+               </time>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>Конец занятий</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTimeEdit" name="plannerEndTimeEdit">
+              <property name="displayFormat">
+               <string>HH:mm</string>
+              </property>
+              <property name="time">
+               <time>
+                <hour>19</hour>
+                <minute>0</minute>
+                <second>0</second>
+               </time>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="generateScheduleButton">
+          <property name="text">
+           <string>Составить расписание</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Запланированные занятия&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+            <widget class="QTableWidget" name="scheduleTableWidget">
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+            <column>
+             <property name="text">
+              <string>Дата</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Начало</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Конец</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Задача</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Мин.</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>621</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
